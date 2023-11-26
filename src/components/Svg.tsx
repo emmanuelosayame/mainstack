@@ -109,3 +109,87 @@ export const ArrowLeftDown = () => {
     </svg>
   );
 };
+
+export const XIcon = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'>
+      <mask
+        id='mask0_3841_754'
+        //   style='mask-type:alpha'
+        maskUnits='userSpaceOnUse'
+        x='0'
+        y='0'
+        width='24'
+        height='24'>
+        <rect width='24' height='24' fill='#C4C4C4' />
+      </mask>
+      <g mask='url(#mask0_3841_754)'>
+        <path
+          d='M6.39995 18.3L5.69995 17.6L11.3 12L5.69995 6.40001L6.39995 5.70001L12 11.3L17.6 5.70001L18.3 6.40001L12.7 12L18.3 17.6L17.6 18.3L12 12.7L6.39995 18.3Z'
+          fill='#131316'
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const ChevronUpSvg = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='20'
+      height='20'
+      viewBox='0 0 20 20'
+      fill='none'>
+      <mask
+        id='mask0_3841_222'
+        // style='mask-type:alpha'
+        maskUnits='userSpaceOnUse'
+        x='0'
+        y='0'
+        width='20'
+        height='20'>
+        <rect width='20' height='20' fill='#C4C4C4' />
+      </mask>
+      <g mask='url(#mask0_3841_222)'>
+        <path
+          d='M6.16671 12.25L5.58337 11.6667L10 7.22916L14.4167 11.6667L13.8334 12.25L10 8.41666L6.16671 12.25Z'
+          fill='#000004'
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const ChevronDownSm = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='20'
+      height='20'
+      viewBox='0 0 20 20'
+      fill='none'>
+      <mask
+        id='mask0_3841_1026'
+        // style='mask-type:alpha'
+        maskUnits='userSpaceOnUse'
+        x='0'
+        y='0'
+        width='20'
+        height='20'>
+        <rect width='20' height='20' fill='#C4C4C4' />
+      </mask>
+      <g mask='url(#mask0_3841_1026)'>
+        <path
+          d='M10 12.25L5.58337 7.83332L6.16671 7.22916L10 11.0625L13.8334 7.22916L14.4167 7.83332L10 12.25Z'
+          fill='#31373D'
+        />
+      </g>
+    </svg>
+  );
+};

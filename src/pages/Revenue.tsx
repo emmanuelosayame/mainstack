@@ -1,9 +1,5 @@
-import {
-  ArrowLeftDown,
-  ChevronDown,
-  ExportListSvg,
-  InfoSvg,
-} from '../components/Svg';
+import Filter from '../components/Filter';
+import { ArrowLeftDown, ExportListSvg, InfoSvg } from '../components/Svg';
 
 const data = [
   {
@@ -84,10 +80,7 @@ const Revenue = () => {
             </p>
           </div>
 
-          <button className='h-fit flex items-center py-3 px-5 bg-maingray rounded-[100px] font-semibold gap-1'>
-            <p>Filter</p>
-            <ChevronDown />
-          </button>
+          <Filter />
 
           <button className='h-fit flex items-center py-3 px-5 bg-maingray rounded-[100px] font-semibold gap-1'>
             <p>Export list</p>

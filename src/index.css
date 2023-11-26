@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .center-x {
+    @apply left-1/2 -translate-x-1/2;
+  }
+  .center-y {
+    @apply top-1/2 -translate-y-1/2;
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -20,6 +29,11 @@ body {
   min-height: 100vh;
 }
 
+button,
+input {
+  outline: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     background-color: #ffffff;
@@ -36,4 +50,9 @@ body {
     --monochrome-black,
     linear-gradient(139deg, #5c6670 2.33%, #131316 96.28%)
   );
+}
+
+.date-picker-trigger[data-state='open'] {
+  /* background-color: red; */
+  border: 3px solid #131316;
 }

@@ -11,7 +11,7 @@ import {
   ChartData,
 } from 'chart.js';
 import { Transaction } from '../../utils/models';
-import { minMaxDates, toDateLong } from '../../utils/helper';
+import { toDateLong } from '../../utils/helper';
 
 ChartJS.register(
   CategoryScale,
@@ -27,8 +27,10 @@ interface Props {
   transactions: Transaction[];
 }
 
-const Chart = ({ transactions }: Props) => {
-  const { min, max } = minMaxDates(transactions.map((x) => x.date));
+const Chart = ({ transactions: unfilteredTransactions }: Props) => {
+  const transactions = unfilteredTransactions.sort(
+    (a, b) => Date.parse(a.date) - Date.parse(b.date)
+  );
 
   const labels = transactions.map(
     (x) => x.date || x?.payment_reference || x.metadata?.name
@@ -92,8 +94,8 @@ const Chart = ({ transactions }: Props) => {
         <div className='w-2 h-2 rounded-full bg-borderGray' />
       </div>
       <div className='flex w-full justify-between text-sm text-[#56616B]'>
-        <p>{toDateLong(min)}</p>
-        <p>{toDateLong(max)}</p>
+        <p>{toDateLong(transactions?.[0]?.date)}</p>
+        <p>{toDateLong(transactions?.[transactions.length - 1]?.date)}</p>
       </div>
     </div>
   );

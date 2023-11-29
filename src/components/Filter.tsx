@@ -77,19 +77,19 @@ const Filter = ({
             </div>
 
             <div className='flex gap-2 mt-4'>
-              <button className='rounded-[100px] border border-border-gray px-3.5 text-sm py-2.5 text-black'>
+              <button className='rounded-[100px] border border-border-gray px-3 text-sm py-2.5 text-black'>
                 Today
               </button>
 
-              <button className='rounded-[100px] border border-border-gray px-3.5 text-sm py-2.5'>
+              <button className='rounded-[100px] border border-border-gray px-3 text-sm py-2.5'>
                 Last 7 days
               </button>
 
-              <button className='rounded-[100px] border border-border-gray px-3.5 text-sm py-2.5'>
+              <button className='rounded-[100px] border border-border-gray px-3 text-sm py-2.5'>
                 This month
               </button>
 
-              <button className='rounded-[100px] border border-border-gray px-3.5 text-sm py-2.5'>
+              <button className='rounded-[100px] border border-border-gray px-3 text-sm py-2.5'>
                 Last 3 months
               </button>
             </div>

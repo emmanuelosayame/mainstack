@@ -1,5 +1,5 @@
 import { Content, Root, Trigger } from '@radix-ui/react-dialog';
-import { ChevronDownSm, ChevronUpSvg } from './Svg';
+import { ChevronDownSm, ChevronUpSvg } from './svg';
 import Checkbox from './Checkbox';
 import { useState } from 'react';
 
@@ -20,10 +20,10 @@ const Select = ({ value, options, onChecked, label, checked }: Props) => {
         <h4 className='font-bold'>{label}</h4>
         <Trigger
           className={` w-full bg-lightGray rounded-[12px] py-2.5
-       px-4 flex justify-between border-[3px]  mt-2 ${
+       px-4 flex gap-3 justify-between border-[3px] mt-2 ${
          open ? 'border-black' : 'border-transparent'
        }`}>
-          <span>{value}</span>
+          <span className='ellipsis-text'>{value}</span>
           <span>{open ? <ChevronUpSvg /> : <ChevronDownSm />}</span>
         </Trigger>
 

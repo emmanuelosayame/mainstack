@@ -5,7 +5,7 @@ import {
   Root,
   Trigger,
 } from '@radix-ui/react-dialog';
-import { ChevronDown, XIcon } from './Svg';
+import { ChevronDown, XIcon } from './svg';
 import { useState } from 'react';
 import { DatePicker } from './DatePicker';
 import Select from './Select';

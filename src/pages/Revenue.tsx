@@ -1,5 +1,6 @@
 import Filter from '../components/Filter';
-import { ArrowLeftDown, ExportListSvg, InfoSvg } from '../components/Svg';
+import { ArrowLeftDown, ExportListSvg, InfoSvg } from '../components/svg';
+import receiptIcon from '../assets/icons/receipt_long.svg';
 
 const data = [
   {
@@ -74,7 +75,9 @@ const Revenue = () => {
       <section className='mt-10'>
         <div className='flex gap-3 border-b border-b-neutral-200 py-5'>
           <div className='flex-1 leading-6'>
-            <h4 className='text-[24px] font-bold'>24 Transactions</h4>
+            <h4 className='text-[24px] font-bold'>
+              {data.length} Transactions
+            </h4>
             <p className='text-sm text-[#56616B]'>
               Your transactions for the last 7 days
             </p>
@@ -89,23 +92,55 @@ const Revenue = () => {
         </div>
 
         <div className='mt-10'>
-          {data.map((x) => (
-            <div key={x.id} className='flex gap-4'>
-              <div className='rounded-full w-[48px] h-[48px] bg-[#E3FCF2] flex justify-center items-center'>
-                <ArrowLeftDown />
-              </div>
-              <div className='flex-1'>
-                <p>{x.title}</p>
-                <p className='text-sm text-secGray'>{x.name}</p>
-              </div>
-              <div>
-                <p className='font-bold'>{x.price}</p>
-                <p className='text-sm text-secGray'>{x.date}</p>
-              </div>
-            </div>
-          ))}
+          {data.length < 1 ? (
+            <EmptyScreen />
+          ) : (
+            <>
+              {data.map((x) => (
+                <div key={x.id} className='flex gap-4'>
+                  <div className='rounded-full w-[48px] h-[48px] bg-[#E3FCF2] flex justify-center items-center'>
+                    <ArrowLeftDown />
+                  </div>
+                  <div className='flex-1'>
+                    <p>{x.title}</p>
+                    <p className='text-sm text-secGray'>{x.name}</p>
+                  </div>
+                  <div>
+                    <p className='font-bold'>{x.price}</p>
+                    <p className='text-sm text-secGray'>{x.date}</p>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </section>
+    </div>
+  );
+};
+
+const EmptyScreen = () => {
+  return (
+    <div className='flex justify-center items-center'>
+      <div className='flex flex-col w-1/3 gap-4'>
+        <img
+          alt='receipt'
+          src={receiptIcon}
+          className='rounded-xl bg-borderGray p-3 w-fit'
+        />
+        <h3 className='font-bold text-[28px]'>
+          <span className='hidden'>📦</span> No matching transaction found for
+          the selected filter
+        </h3>
+
+        <p className='text-[#56616B]'>
+          Change your filters to see more results, or add a new product.
+        </p>
+
+        <button className='bg-borderGray rounded-[100px] px-5 py-3 w-fit'>
+          Clear Filter
+        </button>
+      </div>
     </div>
   );
 };

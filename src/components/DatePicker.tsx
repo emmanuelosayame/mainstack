@@ -2,7 +2,7 @@ import { Content, Root, Trigger } from '@radix-ui/react-dialog';
 import { format } from 'date-fns';
 import { forwardRef, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
-import { ChevronDownSm, ChevronUpSvg } from './Svg';
+import { ChevronDownSm, ChevronUpSvg } from './svg';
 
 interface Props {
   value?: Date;

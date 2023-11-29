@@ -3,10 +3,10 @@ import home from '../assets/icons/home.svg';
 import analytics from '../assets/icons/insert_chart.svg';
 import revenue from '../assets/icons/payments.svg';
 import crm from '../assets/icons/group.svg';
-import apps from '../assets/icons/widgets.svg';
 import notifications from '../assets/icons/notifications.svg';
 import messages from '../assets/icons/chat.svg';
-import menu from '../assets/icons/menu.svg';
+import Apps from './Apps';
+import MenuBar from './MenuBar';
 
 const Header = () => {
   return (
@@ -32,16 +32,7 @@ const UserSection = () => {
         <img alt='messages' src={messages} />
       </button>
 
-      <div className='flex bg-[#EFF1F6] rounded-[100px] px-2 py-1 gap-2'>
-        <button className='avatar rounded-full w-[32px] h-[32px] '>
-          <span className='flex justify-center items-center text-[13px] font-semibold text-white'>
-            {'OJ'}
-          </span>
-        </button>
-        <button>
-          <img alt='menu' src={menu} />
-        </button>
-      </div>
+      <MenuBar />
     </div>
   );
 };
@@ -49,7 +40,7 @@ const UserSection = () => {
 const CenterMenus = () => {
   return (
     <div className='flex gap-10 justify-center items-center text-[#56616B]'>
-      <button className='flex gap-1 font-semibold'>
+      <button className='flex gap-1 font-semibold rounded-[100px] px-4 py-2 hover:bg-borderGray'>
         <img
           alt='home'
           src={home}
@@ -60,7 +51,7 @@ const CenterMenus = () => {
         <p>Home</p>
       </button>
 
-      <button className='flex gap-1 font-semibold'>
+      <button className='flex gap-1 font-semibold rounded-[100px] px-4 py-2 hover:bg-borderGray'>
         <img
           alt='analytics'
           src={analytics}
@@ -82,7 +73,7 @@ const CenterMenus = () => {
         <p>Revenue</p>
       </button>
 
-      <button className='flex gap-1 font-semibold'>
+      <button className='flex gap-1 font-semibold rounded-[100px] px-4 py-2 hover:bg-borderGray'>
         <img
           alt='crm'
           src={crm}
@@ -93,16 +84,7 @@ const CenterMenus = () => {
         <p>CRM</p>
       </button>
 
-      <button className='flex gap-1 font-semibold'>
-        <img
-          alt='apps'
-          src={apps}
-          width={20}
-          height={20}
-          className='h-[20px] w-[20px]'
-        />
-        <p>Apps</p>
-      </button>
+      <Apps />
     </div>
   );
 };

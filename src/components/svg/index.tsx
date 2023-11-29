@@ -112,6 +112,34 @@ export const ArrowLeftDown = () => {
   );
 };
 
+export const ArrowUpRIght = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='21'
+      height='21'
+      viewBox='0 0 21 21'
+      fill='none'>
+      <mask
+        id='mask0_5416_260'
+        // style='mask-type:alpha'
+        maskUnits='userSpaceOnUse'
+        x='0'
+        y='0'
+        width='21'
+        height='21'>
+        <rect x='0.5' y='0.5' width='20' height='20' fill='#C4C4C4' />
+      </mask>
+      <g mask='url(#mask0_5416_260)'>
+        <path
+          d='M4.99984 16.5833L4.4165 16L14.4998 5.91668H8.4165V5.08334H15.9165V12.5833H15.0832V6.50001L4.99984 16.5833Z'
+          fill='#961100'
+        />
+      </g>
+    </svg>
+  );
+};
+
 export const XIcon = () => {
   return (
     <svg
@@ -345,8 +373,8 @@ export const ReceiptIcon = () => {
           x2='20.2687'
           y2='19.5158'
           gradientUnits='userSpaceOnUse'>
-          <stop stop-color='#5C6670' />
-          <stop offset='1' stop-color='#131316' />
+          <stop stopColor='#5C6670' />
+          <stop offset='1' stopColor='#131316' />
         </linearGradient>
       </defs>
     </svg>

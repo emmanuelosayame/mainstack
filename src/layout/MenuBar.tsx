@@ -9,16 +9,22 @@ import {
   SignOutIcon,
   SwitchAccountIcon,
 } from '../components/svg';
+import { useGetUser } from '../../utils/hooks/useGetUser';
+import { Loading } from '../components/Loading';
 
 const MenuBar = () => {
   const [open, setOpen] = useState(false);
+
+  const { user, loading: loadingUser } = useGetUser();
+
+  if (loadingUser) return <Loading />;
 
   return (
     <>
       <div className='flex bg-[#EFF1F6] rounded-[100px] px-2 py-1 gap-2'>
         <button className='avatar rounded-full w-[32px] h-[32px] '>
           <span className='flex justify-center items-center text-[13px] font-semibold text-white'>
-            {'OJ'}
+            {`${user?.first_name.slice(0, 1)} ${user?.last_name.slice(0, 1)}`}
           </span>
         </button>
         <button onClick={() => setOpen((prev) => !prev)}>
@@ -31,12 +37,15 @@ const MenuBar = () => {
           <div className='p-2 flex gap-3 items-center'>
             <div className='avatar rounded-full w-[43px] h-[43px] flex justify-center items-center'>
               <span className='text-center flex items-center text-[13px] font-semibold text-white'>
-                {'OJ'}
+                {`${user?.first_name.slice(0, 1)} ${user?.last_name.slice(
+                  0,
+                  1
+                )}`}
               </span>
             </div>
             <div className=''>
-              <h5 className='font-semibold'>Olivia Jones</h5>
-              <p className='text-sm'>oliviajones@gmail.com</p>
+              <h5 className='font-semibold'>{`${user?.first_name} ${user?.last_name}`}</h5>
+              <p className='text-sm'>{user?.email}</p>
             </div>
           </div>
 

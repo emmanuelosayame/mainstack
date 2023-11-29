@@ -11,8 +11,8 @@ import MenuBar from './MenuBar';
 const Header = () => {
   return (
     <div
-      className='rounded-[100px] h-16 fixed top-4 inset-x-3 flex items-center px-5 
-    justify-between header'>
+      className='rounded-[100px] h-16 fixed top-2 inset-x-3 flex items-center px-5 
+    justify-between header z-20 bg-white'>
       <img className='' alt='logo' src={logo} />
 
       <CenterMenus />

@@ -22,11 +22,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  z-index: 0;
 }
 
 body {
   width: 100%;
   min-height: 100vh;
+  z-index: 0;
 }
 
 button,
@@ -66,4 +68,48 @@ input {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.filter-dialog-overlay[data-state='open'],
+.filter-dialog-overlay[data-state='closed'] {
+  animation: fadeOut 700ms ease-in-out;
+}
+.filter-dialog-content[data-state='open'] {
+  transform: translateX(100%);
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.filter-dialog-content[data-state='closed'] {
+  transform: translateX(0);
+  animation: slide-out 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }

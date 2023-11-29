@@ -12,13 +12,16 @@ import { toDateLong } from '../../utils/helper';
 import { useState } from 'react';
 import { FilterType } from '../../utils/models';
 import { useGetWallet } from '../../utils/hooks/useGetWallets';
+import Chart from '../components/Chart';
+
+const defaultValue = {
+  dateRange: {},
+  transactionStatus: [],
+  transactionType: [],
+};
 
 const Revenue = () => {
-  const [filter, setFilter] = useState<FilterType>({
-    dateRange: {},
-    transactionStatus: [],
-    transactionType: [],
-  });
+  const [filter, setFilter] = useState<FilterType>(defaultValue);
 
   const { transactions, loading } = useGetTransactions();
   const { wallet, loading: loadingWallet } = useGetWallet();
@@ -26,10 +29,10 @@ const Revenue = () => {
   return (
     <div className='px-36 py-20'>
       {(loading || loadingWallet) && <Loading position='absolute' />}
-      <section className='flex w-full'>
-        <section className='w-3/5'>
-          <div className='flex items-center gap-4'>
-            <div className='flex flex-col gap-3'>
+      <section className='flex w-full justify-between'>
+        <section className='w-[58%]'>
+          <div className='flex items-center gap-20'>
+            <div className='flex flex-col gap-1'>
               <p className='text-sm text-[#56616B]'>Available Balance</p>
               <h4 className='font-bold text-[36px]'>
                 USD {wallet?.total_revenue || 0.0}
@@ -40,9 +43,10 @@ const Revenue = () => {
               Withdraw
             </button>
           </div>
+          <Chart transactions={transactions} />
         </section>
 
-        <section className='w-2/5 space-y-4'>
+        <section className='w-[30%] space-y-6 pt-5'>
           <div className='w-full'>
             <div className='flex items-center justify-between w-full'>
               <p className='text-sm'>Ledger Balance</p>
@@ -114,7 +118,7 @@ const Revenue = () => {
 
         <div className='mt-10'>
           {transactions.length < 1 ? (
-            <EmptyScreen />
+            <EmptyScreen setFilter={setFilter} />
           ) : (
             <div className='space-y-4'>
               {transactions.map((transaction, index) => (
@@ -148,7 +152,9 @@ const Revenue = () => {
                       }`}>{`${transaction.status}`}</p>
                   </div>
                   <div>
-                    <p className='font-bold'>USD {transaction?.amount}</p>
+                    <p className='font-bold text-[16px]'>
+                      USD {transaction?.amount}
+                    </p>
                     <p className='text-sm text-secGray'>
                       {toDateLong(transaction.date)}
                     </p>
@@ -163,7 +169,11 @@ const Revenue = () => {
   );
 };
 
-const EmptyScreen = () => {
+const EmptyScreen = ({
+  setFilter,
+}: {
+  setFilter: React.Dispatch<React.SetStateAction<FilterType>>;
+}) => {
   return (
     <div className='flex justify-center items-center'>
       <div className='flex flex-col w-1/3 gap-4'>
@@ -181,7 +191,9 @@ const EmptyScreen = () => {
           Change your filters to see more results, or add a new product.
         </p>
 
-        <button className='bg-borderGray rounded-[100px] px-5 py-3 w-fit'>
+        <button
+          onClick={() => setFilter(defaultValue)}
+          className='bg-borderGray rounded-[100px] px-5 py-3 w-fit'>
           Clear Filter
         </button>
       </div>

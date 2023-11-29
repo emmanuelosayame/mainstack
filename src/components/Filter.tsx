@@ -10,11 +10,29 @@ import { useState } from 'react';
 import { DatePicker } from './DatePicker';
 import Select from './Select';
 
+interface Filter {
+  dateRange: { start?: Date; end?: Date };
+  transactionType: string[];
+  transactionStatus: string[];
+}
+
+const defaultState = {
+  dateRange: {},
+  transactionStatus: [],
+  transactionType: [],
+};
+
 const Filter = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  const [filter, setFilter] = useState<Filter>(defaultState);
+
+  const { dateRange, transactionStatus, transactionType } = filter;
+
+  const applyDisabled = JSON.stringify(defaultState) === JSON.stringify(filter);
 
   return (
-    <Root open={open}>
+    <Root open={open} onOpenChange={setOpen}>
       <Trigger className='h-fit flex items-center py-3 px-5 bg-maingray rounded-[100px] font-semibold gap-1'>
         <p>Filter</p>
         <ChevronDown />
@@ -54,29 +72,82 @@ const Filter = () => {
             <div>
               <h4 className='font-bold'>Date Range</h4>
               <div className='relative flex justify-between gap-4'>
-                <DatePicker value={new Date()} onChange={() => {}} />
-                <DatePicker value={new Date()} onChange={() => {}} />
+                <DatePicker
+                  value={dateRange.start}
+                  onChange={(date) => {
+                    setFilter((prev) => ({
+                      ...prev,
+                      dateRange: { start: date, end: prev.dateRange.end },
+                    }));
+                  }}
+                />
+                <DatePicker
+                  value={dateRange.end}
+                  onChange={(date) => {
+                    setFilter((prev) => ({
+                      ...prev,
+                      dateRange: { start: prev.dateRange.start, end: date },
+                    }));
+                  }}
+                />
               </div>
             </div>
 
             <Select
-              value=''
-              onValueChange={() => {}}
+              value={
+                transactionType.length > 0
+                  ? transactionType.join(' , ')
+                  : 'Select Transaction Type'
+              }
+              onChecked={(id, state) => {
+                setFilter((prev) => ({
+                  ...prev,
+                  transactionType: state
+                    ? [...prev.transactionType, id]
+                    : prev.transactionType.filter((x) => x !== id),
+                }));
+              }}
               label='Transaction Type'
+              options={[
+                'Store Transactions',
+                'Get Tipped',
+                'Withdrawals',
+                'Chargebacks',
+                'Cashbacks',
+                'Refer & Earn',
+              ]}
+              checked={transactionType}
             />
 
             <Select
-              value=''
-              onValueChange={() => {}}
-              label='Transaction Type'
+              value={
+                transactionStatus.length > 0
+                  ? transactionStatus.join(' , ')
+                  : 'Select Transaction Status'
+              }
+              onChecked={(id, state) => {
+                setFilter((prev) => ({
+                  ...prev,
+                  transactionStatus: state
+                    ? [...prev.transactionStatus, id]
+                    : prev.transactionStatus.filter((x) => x !== id),
+                }));
+              }}
+              label='Transaction Status'
+              options={['Successful', 'Pending', 'Failed']}
+              checked={transactionStatus}
             />
           </div>
 
           <div className='flex gap-3'>
-            <button className='border rounded-[100px] border-borderGray w-full py-3 font-bold'>
+            <button
+              className='border rounded-[100px] border-borderGray w-full py-3 font-bold'
+              onClick={() => setFilter(defaultState)}>
               Clear
             </button>
-            <button className='rounded-[100px] bg-black text-white w-full py-3 font-bold'>
+            <button
+              disabled={applyDisabled}
+              className='rounded-[100px] bg-black text-white w-full py-3 font-bold disabled:opacity-20'>
               Apply
             </button>
           </div>

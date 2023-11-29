@@ -5,7 +5,7 @@ import { DayPicker } from 'react-day-picker';
 import { ChevronDownSm, ChevronUpSvg } from './Svg';
 
 interface Props {
-  value: Date;
+  value?: Date;
   onChange: (date: Date) => void;
 }
 
@@ -18,7 +18,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, Props>(
         <Trigger
           ref={ref}
           className='date-picker-trigger w-full bg-lightGray rounded-[12px] py-2.5 px-4 flex justify-between border-[3px] border-transparent'>
-          <span>{format(value, 'dd MMMM yyyy')}</span>
+          <span>{value ? format(value, 'dd MMMM yyyy') : 'Select Date'}</span>
           {open ? <ChevronUpSvg /> : <ChevronDownSm />}
         </Trigger>
         <Content className='form-datepicker absolute z-40 top-16 inset-x-0 rounded-[16px] shadow-md w-full bg-white'>
